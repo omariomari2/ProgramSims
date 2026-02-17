@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kudos System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 Kudos System</h1>
+            <p>Celebrate your colleagues!</p>
+        </header>
+
+        <main class="dashboard">
+            <section class="kudos-form">
+                <h2>Give Kudos</h2>
+                <form id="kudosForm">
+                    <div class="form-group">
+                        <label for="sender">From:</label>
+                        <select id="sender" name="sender_id" required>
+                            <option value="">Select yourself...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="receiver">To:</label>
+                        <select id="receiver" name="receiver_id" required>
+                            <option value="">Select colleague...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Thank you for..."></textarea>
+                    </div>
+
+                    <button type="submit">Send Kudos</button>
+                </form>
+            </section>
+
+            <section class="kudos-feed">
+                <h2>Recent Kudos</h2>
+                <div id="feed" class="feed-container">
+                    <p>Loading...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchUsers();
+            fetchKudos();
+
+            document.getElementById('kudosForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = {
+                    sender_id: formData.get('sender_id'),
+                    receiver_id: formData.get('receiver_id'),
+                    message: formData.get('message')
+                };
+
+                try {
+                    const response = await fetch('/api/kudos', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    if (response.ok) {
+                        e.target.reset();
+                        fetchKudos();
+                    } else {
+                        alert('Failed to send kudos');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+
+        async function fetchUsers() {
+            try {
+                const response = await fetch('/api/users');
+                const users = await response.json();
+                const senderSelect = document.getElementById('sender');
+                const receiverSelect = document.getElementById('receiver');
+
+                users.forEach(user => {
+                    const option = new Option(user.full_name, user.id);
+                    senderSelect.add(option.cloneNode(true));
+                    receiverSelect.add(option);
+                });
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        }
+
+        async function fetchKudos() {
+            try {
+                const response = await fetch('/api/kudos');
+                const kudosList = await response.json();
+                const feed = document.getElementById('feed');
+                
+                if (kudosList.length === 0) {
+                    feed.innerHTML = '<p>No kudos yet. Be the first!</p>';
+                    return;
+                }
+
+                feed.innerHTML = kudosList.map(kudos => `
+                    <div class="kudos-card">
+                        <div class="kudos-header">
+                            <strong>${kudos.sender}</strong> to <strong>${kudos.receiver}</strong>
+                        </div>
+                        <div class="kudos-message">${kudos.message}</div>
+                        <div class="kudos-time">${new Date(kudos.timestamp).toLocaleString()}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching kudos:', error);
+                document.getElementById('feed').innerHTML = '<p>Error loading feed.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

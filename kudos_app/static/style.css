@@ -1,0 +1,126 @@
+:root {
+    --primary-color: #4a90e2;
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --text-color: #333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max_width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+section {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+h2 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    box-sizing: border-box; 
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
+.kudos-card {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: #fff;
+    transition: transform 0.2s;
+}
+
+.kudos-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.kudos-header {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.kudos-header strong {
+    color: var(--primary-color);
+}
+
+.kudos-message {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.kudos-time {
+    font-size: 0.8em;
+    color: #999;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
