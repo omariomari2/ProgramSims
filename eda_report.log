@@ -1,0 +1,172 @@
+Shape: (500, 19)
+
+Info:
+<class 'pandas.DataFrame'>
+RangeIndex: 500 entries, 0 to 499
+Data columns (total 19 columns):
+ #   Column                Non-Null Count  Dtype  
+---  ------                --------------  -----  
+ 0   Customer_ID           500 non-null    str    
+ 1   Age                   500 non-null    int64  
+ 2   Income                461 non-null    float64
+ 3   Credit_Score          498 non-null    float64
+ 4   Credit_Utilization    500 non-null    float64
+ 5   Missed_Payments       500 non-null    int64  
+ 6   Delinquent_Account    500 non-null    int64  
+ 7   Loan_Balance          471 non-null    float64
+ 8   Debt_to_Income_Ratio  500 non-null    float64
+ 9   Employment_Status     500 non-null    str    
+ 10  Account_Tenure        500 non-null    int64  
+ 11  Credit_Card_Type      500 non-null    str    
+ 12  Location              500 non-null    str    
+ 13  Month_1               500 non-null    str    
+ 14  Month_2               500 non-null    str    
+ 15  Month_3               500 non-null    str    
+ 16  Month_4               500 non-null    str    
+ 17  Month_5               500 non-null    str    
+ 18  Month_6               500 non-null    str    
+dtypes: float64(5), int64(4), str(10)
+memory usage: 74.3 KB
+None
+
+Missing Values:
+Customer_ID              0
+Age                      0
+Income                  39
+Credit_Score             2
+Credit_Utilization       0
+Missed_Payments          0
+Delinquent_Account       0
+Loan_Balance            29
+Debt_to_Income_Ratio     0
+Employment_Status        0
+Account_Tenure           0
+Credit_Card_Type         0
+Location                 0
+Month_1                  0
+Month_2                  0
+Month_3                  0
+Month_4                  0
+Month_5                  0
+Month_6                  0
+dtype: int64
+
+Duplicates:
+0
+
+Identify 0 values where they might be missing data:
+Missed_Payments: 77 zeros
+Delinquent_Account: 420 zeros
+Account_Tenure: 28 zeros
+
+Summary Statistics:
+              Age  ...  Account_Tenure
+count  500.000000  ...      500.000000
+mean    46.266000  ...        9.740000
+std     16.187629  ...        5.923054
+min     18.000000  ...        0.000000
+25%     33.000000  ...        5.000000
+50%     46.500000  ...       10.000000
+75%     59.250000  ...       15.000000
+max     74.000000  ...       19.000000
+
+[8 rows x 9 columns]
+
+Correlation Matrix:
+                           Age  ...  Account_Tenure
+Age                   1.000000  ...        0.016942
+Income                0.006496  ...       -0.004901
+Credit_Score         -0.034075  ...       -0.036904
+Credit_Utilization    0.015811  ...        0.065264
+Missed_Payments      -0.023511  ...       -0.097345
+Delinquent_Account    0.022508  ...       -0.039829
+Loan_Balance         -0.051190  ...        0.054607
+Debt_to_Income_Ratio -0.007883  ...        0.026144
+Account_Tenure        0.016942  ...        1.000000
+
+[9 rows x 9 columns]
+
+Value Counts for Customer_ID:
+Customer_ID
+CUST0001    1
+CUST0002    1
+CUST0003    1
+CUST0004    1
+CUST0005    1
+           ..
+CUST0496    1
+CUST0497    1
+CUST0498    1
+CUST0499    1
+CUST0500    1
+Name: count, Length: 500, dtype: int64
+
+Value Counts for Employment_Status:
+Employment_Status
+Unemployed       93
+retired          87
+Employed         82
+EMP              81
+Self-employed    80
+employed         77
+Name: count, dtype: int64
+
+Value Counts for Credit_Card_Type:
+Credit_Card_Type
+Gold        118
+Student     112
+Business    108
+Standard     86
+Platinum     76
+Name: count, dtype: int64
+
+Value Counts for Location:
+Location
+Los Angeles    107
+Phoenix        103
+Chicago        103
+Houston         95
+New York        92
+Name: count, dtype: int64
+
+Value Counts for Month_1:
+Month_1
+On-time    177
+Missed     164
+Late       159
+Name: count, dtype: int64
+
+Value Counts for Month_2:
+Month_2
+Late       173
+Missed     167
+On-time    160
+Name: count, dtype: int64
+
+Value Counts for Month_3:
+Month_3
+Late       169
+On-time    169
+Missed     162
+Name: count, dtype: int64
+
+Value Counts for Month_4:
+Month_4
+Late       181
+Missed     160
+On-time    159
+Name: count, dtype: int64
+
+Value Counts for Month_5:
+Month_5
+Missed     187
+On-time    162
+Late       151
+Name: count, dtype: int64
+
+Value Counts for Month_6:
+Month_6
+Late       172
+Missed     168
+On-time    160
+Name: count, dtype: int64
